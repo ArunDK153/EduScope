@@ -35,8 +35,10 @@ public class LoginActivity extends AppCompatActivity {
 
         //if the user is already logged in we will directly start the profile activity
         if (prefManager.isLoggedIn()) {
+            Intent i = new Intent(this, ProfileActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
             finish();
-            startActivity(new Intent(this, ProfileActivity.class));
         }
 
         //if user presses on login
@@ -102,8 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                         prefManager.userLogin(user);
 
                         //starting the profile activity
+                        Intent i = new Intent(LoginActivity.this, ProfileActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
                         finish();
-                        startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
                     }
