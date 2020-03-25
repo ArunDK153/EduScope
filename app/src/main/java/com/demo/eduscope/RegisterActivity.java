@@ -35,12 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         Button reg_btn = findViewById(R.id.buttonRegister);
 
-        //if the user is already logged in we will directly start the profile activity
-        if (prefManager.isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
-        }
-
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,8 +114,10 @@ public class RegisterActivity extends AppCompatActivity {
                         prefManager.userLogin(user);
 
                         //starting the profile activity
+                        Intent i = new Intent(RegisterActivity.this, ProfileActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
                         finish();
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     } else {
                         Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }

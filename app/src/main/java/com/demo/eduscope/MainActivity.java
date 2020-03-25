@@ -18,12 +18,6 @@ public class MainActivity extends AppCompatActivity {
         Button sign_in = findViewById(R.id.signIn_btn);
         prefManager = new SharedPrefManager(this);
 
-        //if the user is already logged in we will directly start the profile activity
-        if (prefManager.isLoggedIn()) {
-            finish();
-            startActivity(new Intent(this, ProfileActivity.class));
-        }
-
         create_acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
